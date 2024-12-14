@@ -72,9 +72,9 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     const SizedBox(height: 70),
 
-                    const Text(
-                      "Shamsun Nahar",
-                      style: TextStyle(
+                    Text(
+                      user.username,
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
@@ -116,23 +116,23 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(height: 30),
 
                     // Contact Information
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
                         children: [
-                          ContactRowWidget(
+                          const ContactRowWidget(
                             icon: Icons.phone,
                             info: "+156 906785",
                           ),
-                          SizedBox(height: 20),
-                          ContactRowWidget(
+                          const SizedBox(height: 20),
+                          const ContactRowWidget(
                             icon: Icons.location_on,
                             info: "1930 Pooh Bear Lane, AUBURN",
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           ContactRowWidget(
                             icon: Icons.email,
-                            info: "shamsunnahar4.20@gmail.com",
+                            info: user.email,
                           ),
                         ],
                       ),
@@ -145,12 +145,13 @@ class ProfilePage extends StatelessWidget {
             Positioned(
               top: (width * 0.75) - 70, // Adjust to overlap half the avatar
               left: width / 2 - 70, // Center horizontally
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 75,
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
-                  // Adjust background color
+                  backgroundImage: NetworkImage(user.profilePic),
                   radius: 70,
+
                   // Optional
                 ),
               ),

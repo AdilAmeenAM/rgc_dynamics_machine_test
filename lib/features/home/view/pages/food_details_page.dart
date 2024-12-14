@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/product_tile_widget.dart';
 
@@ -31,6 +32,18 @@ class FoodDetailsPage extends StatelessWidget {
                       productModel.image,
                     ),
                   ),
+                ),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                        size: 35,
+                      )),
                 ),
               ),
             ),
