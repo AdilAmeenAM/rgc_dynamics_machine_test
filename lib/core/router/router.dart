@@ -6,6 +6,7 @@ import 'package:rgc_dynamics_machine_test/features/home/models/food_product_mode
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/food_details_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/home_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/profile_page.dart';
+import 'package:rgc_dynamics_machine_test/features/home/view/pages/upload_food_product_page.dart';
 import 'package:rgc_dynamics_machine_test/main.dart';
 
 final router = GoRouter(
@@ -19,6 +20,10 @@ final router = GoRouter(
     GoRoute(
       path: SplashScreenPage.routePath,
       builder: (context, state) => const SplashScreenPage(),
+    ),
+    GoRoute(
+      path: UploadFoodProductPage.routePath,
+      builder: (context, state) => const UploadFoodProductPage(),
     ),
     GoRoute(
       path: HomePage.routePath,

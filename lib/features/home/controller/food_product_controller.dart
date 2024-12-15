@@ -1,3 +1,4 @@
+import 'package:rgc_dynamics_machine_test/core/utils/snackbar_utils.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/services/food_product_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,11 +16,18 @@ class FoodProductController extends _$FoodProductController {
     try {
       final foodProductList = await FoodProductService.getFoodProducts();
       // Clear error message if the request succeeds
-      state = null;
+
       return foodProductList;
     } catch (e) {
-      state = 'Failed to fetch recipes. Please check your network connection.';
       return [];
+    }
+  }
+
+  Future<void> creatFoodProduct(Map<String, dynamic> productData) async {
+    try {
+      await FoodProductService.createFoodProduct(productData);
+    } catch (e) {
+      SnackBarUtils.showMessage('Uploading failed');
     }
   }
 }

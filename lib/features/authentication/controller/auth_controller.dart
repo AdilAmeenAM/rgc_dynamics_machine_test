@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_controller.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class AuthController extends _$AuthController {
   @override
   UserModel? build() {
@@ -18,7 +18,6 @@ class AuthController extends _$AuthController {
   Future<void> login(String email, String password) async {
     try {
       final response = await AuthService.login(email, password);
-      state = response;
 
       App.navigatorKey.currentContext!
           .push(HomePage.routePath, extra: response);

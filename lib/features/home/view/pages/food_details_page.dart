@@ -29,7 +29,7 @@ class FoodDetailsPage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      productModel.image,
+                      productModel.image ?? "",
                     ),
                   ),
                 ),
@@ -64,8 +64,8 @@ class FoodDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProductTileWidget(
-                          name: productModel.name,
-                          price: productModel.price,
+                          name: productModel.name ?? "",
+                          price: productModel.price ?? "",
                           padding: 0,
                           rating: 1.2),
                       const SizedBox(height: 20),
@@ -77,7 +77,7 @@ class FoodDetailsPage extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       Text(
-                        productModel.description,
+                        productModel.description ?? "",
                         style: const TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 20),
@@ -86,12 +86,13 @@ class FoodDetailsPage extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                      Text("Net Weight : ${productModel.weights.netWeight}",
-                          style: const TextStyle(color: Colors.grey)),
-                      Text("Gross Weight : ${productModel.weights.grossWeight}",
+                      Text("Net Weight : ${productModel.weights?.netWeight}",
                           style: const TextStyle(color: Colors.grey)),
                       Text(
-                          "Barcode Number : ${productModel.barcode.barcodeNumber}",
+                          "Gross Weight : ${productModel.weights?.grossWeight}",
+                          style: const TextStyle(color: Colors.grey)),
+                      Text(
+                          "Barcode Number : ${productModel.barcode?.barcodeNumber}",
                           style: const TextStyle(color: Colors.grey)),
                     ],
                   )),

@@ -1,55 +1,55 @@
 class FoodProductModel {
-  final int id;
-  final String name;
-  final String price;
-  final String description;
-  final String category;
-  final Weights weights;
-  final Barcode barcode;
-  final String code;
-  final double rating;
-  final String image;
+  final int? id;
+  final String? name;
+  final String? price;
+  final String? description;
+  final String? category;
+  final Weights? weights;
+  final Barcode? barcode;
+  final String? code;
+  final double? rating;
+  final String? image;
 
   FoodProductModel({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.description,
-    required this.category,
-    required this.weights,
-    required this.barcode,
-    required this.code,
-    required this.rating,
-    required this.image,
+    this.id,
+    this.name,
+    this.price,
+    this.description,
+    this.category,
+    this.weights,
+    this.barcode,
+    this.code,
+    this.rating,
+    this.image,
   });
 
   // Factory constructor to create an object from JSON
   factory FoodProductModel.fromJson(Map<String, dynamic> json) {
     return FoodProductModel(
-      id: json['id'],
-      name: json['name'],
-      price: json['price'],
-      description: json['description'],
-      category: json['category'],
-      weights: Weights.fromJson(json['weights']),
-      barcode: Barcode.fromJson(json['barcode']),
-      code: json['code'],
-      rating: json['rating'].toDouble(),
-      image: json['image'],
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      price: json['price'] as String?,
+      description: json['description'] as String?,
+      category: json['category'] as String?,
+      weights:
+          json['weights'] != null ? Weights.fromJson(json['weights']) : null,
+      barcode:
+          json['barcode'] != null ? Barcode.fromJson(json['barcode']) : null,
+      code: json['code'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      image: json['image'] as String?,
     );
   }
 
   // Method to convert the object back to JSON
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'name': name,
-      'price': price,
       'description': description,
+      'price': price,
       'category': category,
-      'weights': weights.toJson(),
-      'barcode': barcode.toJson(),
-      'code': code,
+      'weights': weights?.toJson(),
+      'barcode': barcode?.toJson(),
       'rating': rating,
       'image': image,
     };
@@ -57,19 +57,19 @@ class FoodProductModel {
 }
 
 class Weights {
-  final double netWeight; // Changed from int to double
-  final double grossWeight; // Changed from int to double
+  final double? netWeight; // Changed from double to double?
+  final double? grossWeight; // Changed from double to double?
 
   Weights({
-    required this.netWeight,
-    required this.grossWeight,
+    this.netWeight,
+    this.grossWeight,
   });
 
   factory Weights.fromJson(Map<String, dynamic> json) {
     return Weights(
-      netWeight: (json['net_weight'] as num).toDouble(), // Convert to double
+      netWeight: (json['net_weight'] as num?)?.toDouble(), // Convert to double
       grossWeight:
-          (json['gross_weight'] as num).toDouble(), // Convert to double
+          (json['gross_weight'] as num?)?.toDouble(), // Convert to double
     );
   }
 
@@ -82,14 +82,14 @@ class Weights {
 }
 
 class Barcode {
-  final double barcodeNumber; // Changed from int to double
+  final double? barcodeNumber; // Changed from double to double?
 
-  Barcode({required this.barcodeNumber});
+  Barcode({this.barcodeNumber});
 
   factory Barcode.fromJson(Map<String, dynamic> json) {
     return Barcode(
       barcodeNumber:
-          (json['barcode_number'] as num).toDouble(), // Convert to double
+          (json['barcode_number'] as num?)?.toDouble(), // Convert to double
     );
   }
 
