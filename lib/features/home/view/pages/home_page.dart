@@ -6,6 +6,7 @@ import 'package:rgc_dynamics_machine_test/features/home/controller/food_product_
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/food_details_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/profile_page.dart';
+import 'package:rgc_dynamics_machine_test/features/home/view/pages/upload_food_product_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/food_card_widget.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/profile_header_widget.dart';
 
@@ -31,18 +32,23 @@ class HomePage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
+              const Text(
                 'Trending Foods',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
               ),
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
+              InkWell(
+                onTap: () {
+                  context.push(UploadFoodProductPage.routePath);
+                },
+                child: const CircleAvatar(
+                  backgroundColor: Colors.red,
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
                 ),
               )
             ],
