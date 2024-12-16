@@ -57,8 +57,8 @@ class FoodProductModel {
 }
 
 class Weights {
-  final double? netWeight; // Changed from double to double?
-  final double? grossWeight; // Changed from double to double?
+  final double? netWeight;
+  final double? grossWeight;
 
   Weights({
     this.netWeight,
@@ -67,9 +67,8 @@ class Weights {
 
   factory Weights.fromJson(Map<String, dynamic> json) {
     return Weights(
-      netWeight: (json['net_weight'] as num?)?.toDouble(), // Convert to double
-      grossWeight:
-          (json['gross_weight'] as num?)?.toDouble(), // Convert to double
+      netWeight: (json['net_weight'] as num?)?.toDouble(),
+      grossWeight: (json['gross_weight'] as num?)?.toDouble(),
     );
   }
 
@@ -82,14 +81,13 @@ class Weights {
 }
 
 class Barcode {
-  final double? barcodeNumber; // Changed from double to double?
+  final double? barcodeNumber;
 
   Barcode({this.barcodeNumber});
 
   factory Barcode.fromJson(Map<String, dynamic> json) {
     return Barcode(
-      barcodeNumber:
-          (json['barcode_number'] as num?)?.toDouble(), // Convert to double
+      barcodeNumber: (json['barcode_number'] as num?)?.toDouble(),
     );
   }
 

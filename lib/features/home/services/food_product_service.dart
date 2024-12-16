@@ -73,23 +73,26 @@ class FoodProductService {
     }
   }
 
-  // static Future<FoodProductModel> createFoodProduct(
-  //     Map<String, dynamic> productData) async {
-  //   try {
-  //     final response = await _dio.post(
-  //       'https://api-machine-test.hilalcart.com/food/create',
-  //       data: productData,
-  //     );
+  static Future<void> deleteFoodProduct(String id) async {
+    try {
+      final response = await _dio.delete(
+          'https://api-machine-test.hilalcart.com/food/read-delete/$id');
 
-  //     if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        final responseCode = response.data['response_code'];
 
-  //       final result = FoodProductModel.fromJson(response.data);
-  //       return result;
-  //     } else {
-  //       throw Exception('Failed to create food product');
-  //     }
-  //   } catch (e) {
-  //     throw Exception('Error creating food product: $e');
-  //   }
-  // }
+        if (responseCode == 204) {
+          // Show success message
+          SnackBarUtils.showMessage('Food item deleted successfully');
+        } else {
+          // Handle unexpected response codes
+          SnackBarUtils.showMessage('Unexpected error occurred.');
+        }
+      } else {
+        throw Exception('Failed to delete food product');
+      }
+    } catch (e) {
+      SnackBarUtils.showMessage('Deletion failed: $e');
+    }
+  }
 }
