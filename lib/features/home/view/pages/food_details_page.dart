@@ -64,10 +64,13 @@ class FoodDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProductTileWidget(
-                          name: productModel.name ?? "",
-                          price: productModel.price ?? "",
-                          padding: 0,
-                          rating: 1.2),
+                        id: productModel.id ?? 0,
+                        name: productModel.name ?? "",
+                        price: productModel.price ?? "",
+                        padding: 0,
+                        rating: 1.2,
+                        item: productModel,
+                      ),
                       const SizedBox(height: 20),
                       Divider(color: Colors.grey.shade300),
                       const SizedBox(height: 20),

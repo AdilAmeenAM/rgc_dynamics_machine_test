@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/product_tile_widget.dart';
 
 class FoodCardWidget extends StatelessWidget {
@@ -6,12 +7,18 @@ class FoodCardWidget extends StatelessWidget {
   final String name;
   final String price;
   final double rating;
-  const FoodCardWidget(
-      {super.key,
-      required this.imageUrl,
-      required this.name,
-      required this.price,
-      required this.rating});
+  final int id;
+  final FoodProductModel item;
+
+  const FoodCardWidget({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+    required this.price,
+    required this.rating,
+    required this.id,
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,13 @@ class FoodCardWidget extends StatelessWidget {
               ),
             ),
             ProductTileWidget(
-                name: name, price: price, padding: 12, rating: rating),
+              name: name,
+              price: price,
+              padding: 6,
+              rating: rating,
+              id: id,
+              item: item,
+            ),
           ],
         ),
       ),

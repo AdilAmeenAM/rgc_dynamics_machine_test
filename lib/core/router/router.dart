@@ -3,6 +3,7 @@ import 'package:rgc_dynamics_machine_test/features/authentication/models/user_mo
 import 'package:rgc_dynamics_machine_test/features/authentication/view/pages/login_page.dart';
 import 'package:rgc_dynamics_machine_test/features/authentication/view/pages/splash_screen_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
+import 'package:rgc_dynamics_machine_test/features/home/view/pages/favorites_items_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/food_details_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/home_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/pages/profile_page.dart';
@@ -20,6 +21,10 @@ final router = GoRouter(
     GoRoute(
       path: SplashScreenPage.routePath,
       builder: (context, state) => const SplashScreenPage(),
+    ),
+    GoRoute(
+      path: FavoritesItemPage.routePath,
+      builder: (context, state) => const FavoritesItemPage(),
     ),
     GoRoute(
       path: UploadFoodProductPage.routePath,

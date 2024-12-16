@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 
 class ProductTileWidget extends StatelessWidget {
   final String name;
   final String price;
   final double padding;
   final double rating;
-  const ProductTileWidget(
-      {super.key,
-      required this.name,
-      required this.price,
-      required this.padding,
-      required this.rating});
+  final int id;
+  final FoodProductModel item;
+
+  const ProductTileWidget({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.padding,
+    required this.rating,
+    required this.id,
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final dataBox = Hive.box('favorite');
     return Padding(
       padding: EdgeInsets.all(padding),
       child: Column(
@@ -50,10 +59,42 @@ class ProductTileWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(width: 8),
-                  const Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey,
-                  ),
+                  ValueListenableBuilder(
+                      valueListenable: dataBox.listenable(),
+                      builder: (contex, value, _) {
+                        int key = id;
+                        Map food = item.toJson();
+                        bool saved = dataBox.containsKey(key);
+                        if (saved) {
+                          return IconButton(
+                            onPressed: () {
+                              dataBox.delete(key);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      duration: Duration(seconds: 1),
+                                      content: Text('Deleted from favorites')));
+                            },
+                            icon: const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
+                          );
+                        } else {
+                          return IconButton(
+                            onPressed: () {
+                              dataBox.put(key, food);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      duration: Duration(seconds: 1),
+                                      content: Text('Added to fevorites')));
+                            },
+                            icon: const Icon(
+                              Icons.favorite_border,
+                              color: Colors.grey,
+                            ),
+                          );
+                        }
+                      }),
                 ],
               ),
             ],

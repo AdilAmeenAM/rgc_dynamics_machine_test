@@ -92,10 +92,12 @@ class HomePage extends ConsumerWidget {
                                 extra: foodProduct);
                           },
                           child: FoodCardWidget(
-                            imageUrl: foodProduct.image ?? "",
-                            name: foodProduct.name ?? "",
-                            price: foodProduct.price ?? "",
+                            imageUrl: foodProduct.image ?? '',
+                            name: foodProduct.name ?? '',
+                            price: foodProduct.price ?? '',
                             rating: foodProduct.rating ?? 0.0,
+                            id: foodProduct.id ?? 0,
+                            item: foodProduct,
                           ),
                         ),
                       );

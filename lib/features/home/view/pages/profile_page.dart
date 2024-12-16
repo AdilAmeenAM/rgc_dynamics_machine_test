@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:rgc_dynamics_machine_test/features/authentication/models/user_model.dart';
+import 'package:rgc_dynamics_machine_test/features/home/view/pages/favorites_items_page.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/contact_row_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -10,6 +12,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataBox = Hive.box('favorite');
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
@@ -92,23 +95,28 @@ class ProfilePage extends StatelessWidget {
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "My Favorites",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              "15",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                        child: GestureDetector(
+                          onTap: () {
+                            context.push(FavoritesItemPage.routePath);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "My Favorites",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
                               ),
-                            ),
-                          ],
+                              Text(
+                                "${dataBox.length ?? 0}",
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
