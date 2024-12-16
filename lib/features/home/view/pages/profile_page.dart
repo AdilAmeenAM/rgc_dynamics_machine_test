@@ -88,17 +88,17 @@ class ProfilePage extends StatelessWidget {
                     // My Favorites Section
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            context.push(FavoritesItemPage.routePath);
-                          },
+                      child: GestureDetector(
+                        onTap: () {
+                          context.push(FavoritesItemPage.routePath);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[100],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -108,7 +108,7 @@ class ProfilePage extends StatelessWidget {
                                     fontSize: 18, fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                "${dataBox.length ?? 0}",
+                                "${dataBox.length}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

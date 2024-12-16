@@ -69,7 +69,7 @@ class FavoritesItemPage extends StatelessWidget {
                           item[index].name ?? "",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text("${item[index].weights!.netWeight}"),
+                        subtitle: Text("\$${item[index].price}"),
                         trailing: RichText(
                           text: TextSpan(
                             children: [
