@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 
 class FavoritesItemPage extends StatelessWidget {
-  static const routePath = "/detailspage";
+  static const routePath = "/favorite";
 
   const FavoritesItemPage({super.key});
 
