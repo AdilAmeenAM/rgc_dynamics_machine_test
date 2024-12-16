@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:rgc_dynamics_machine_test/core/utils/snackbar_utils.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/services/food_product_service.dart';
@@ -14,10 +15,17 @@ class FoodDetailsPage extends StatelessWidget {
     required this.productModel,
   });
 
-  Future<void> _deleteProduct(BuildContext context) async {
+  Future<void> _deleteProduct(
+      BuildContext context, int id, Box<dynamic> dataBox) async {
     try {
       // Call the delete service
-      await FoodProductService.deleteFoodProduct(productModel.id.toString());
+      await FoodProductService.deleteFoodProduct(id.toString());
+
+      // Remove the item from the Hive dataBox using its ID
+      if (dataBox.containsKey(id)) {
+        await dataBox.delete(id);
+      }
+
       // Show a success message
       SnackBarUtils.showMessage('Product deleted successfully!');
       // Navigate back to the previous screen
@@ -28,7 +36,7 @@ class FoodDetailsPage extends StatelessWidget {
     }
   }
 
-  void _showDeleteDialog(BuildContext context) {
+  void _showDeleteDialog(BuildContext context, int id, final dataBox) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -38,14 +46,14 @@ class FoodDetailsPage extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: const Text("Cancel"),
             ),
             TextButton(
               onPressed: () async {
-                Navigator.of(context).pop(); // Close the dialog
-                await _deleteProduct(context); // Call the delete method
+                Navigator.of(context).pop();
+                await _deleteProduct(context, id, dataBox);
               },
               child: const Text("Delete"),
             ),
@@ -57,6 +65,7 @@ class FoodDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataBox = Hive.box('favorite');
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -145,7 +154,8 @@ class FoodDetailsPage extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => _showDeleteDialog(context),
+                        onPressed: () => _showDeleteDialog(
+                            context, productModel.id!, dataBox),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
                           padding: const EdgeInsets.symmetric(vertical: 15),

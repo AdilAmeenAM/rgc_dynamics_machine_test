@@ -47,6 +47,9 @@ class FoodCardWidget extends StatelessWidget {
                 height: cardHeight * 0.7,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container();
+                },
               ),
             ),
             ProductTileWidget(

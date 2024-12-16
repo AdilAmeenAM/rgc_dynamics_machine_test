@@ -13,12 +13,13 @@ class LoginPage extends HookConsumerWidget {
     final passwordController = useTextEditingController();
 
     final isLoading = useState(false);
+    final isPasswordVisible = useState(false);
 
     Future<void> onSignIn() async {
       isLoading.value = true;
 
-      final email = emailController.text;
-      final password = passwordController.text;
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
 
       await ref.read(authControllerProvider.notifier).login(email, password);
 
@@ -67,7 +68,7 @@ class LoginPage extends HookConsumerWidget {
             const SizedBox(height: 20),
             TextField(
               controller: passwordController,
-              obscureText: true,
+              obscureText: !isPasswordVisible.value,
               decoration: InputDecoration(
                 labelText: 'Password',
                 labelStyle: const TextStyle(color: Colors.grey),
@@ -75,9 +76,11 @@ class LoginPage extends HookConsumerWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.visibility),
+                  icon: Icon(isPasswordVisible.value
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: () {
-                    // Toggle password visibility
+                    isPasswordVisible.value = !isPasswordVisible.value;
                   },
                 ),
               ),
@@ -86,9 +89,7 @@ class LoginPage extends HookConsumerWidget {
             Align(
               alignment: Alignment.center,
               child: TextButton(
-                onPressed: () {
-                  // Handle forgot password
-                },
+                onPressed: () {},
                 child: const Text(
                   'Forgot password?',
                   style: TextStyle(color: Colors.black),
@@ -100,24 +101,25 @@ class LoginPage extends HookConsumerWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: onSignIn
-                  // Handle login
-                  ,
-                  child: isLoading.value
-                      ? const CircularProgressIndicator()
-                      : const Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        )),
+                ),
+                onPressed: onSignIn,
+                child: isLoading.value
+                    ? const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                    : const Text(
+                        'Log in',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+              ),
             ),
           ],
         ),
