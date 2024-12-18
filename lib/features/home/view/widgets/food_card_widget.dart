@@ -48,9 +48,23 @@ class FoodCardWidget extends StatelessWidget {
                 width: double.infinity,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  return SizedBox(
-                    height: cardHeight * 0.7,
-                    child: const Text("Image is not found"),
+                  return Container(
+                    height: cardHeight * 0.7, // Maintain the same height
+                    width: double.infinity, // Match the width
+                    color: Colors.grey[200], // Optional background color
+                    child: const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.error, color: Colors.red, size: 40),
+                          SizedBox(height: 8),
+                          Text(
+                            'Failed to load image.',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),

@@ -32,7 +32,7 @@ class ProductTileWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                name, // Replace with actual name
+                name,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class ProductTileWidget extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            price, // Replace with actual price
+            "\$$price", // Replace with actual price
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey[800],
