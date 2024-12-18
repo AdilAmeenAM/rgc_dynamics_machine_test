@@ -23,7 +23,6 @@ class FoodProductModel {
     this.image,
   });
 
-  // Factory constructor to create an object from JSON
   factory FoodProductModel.fromJson(Map<String, dynamic> json) {
     return FoodProductModel(
       id: json['id'] as int?,
@@ -41,7 +40,6 @@ class FoodProductModel {
     );
   }
 
-  // Method to convert the object back to JSON
   Map<String, dynamic> toJson() {
     return {
       'name': name,

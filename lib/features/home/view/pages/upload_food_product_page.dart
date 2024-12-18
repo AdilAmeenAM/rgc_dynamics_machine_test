@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rgc_dynamics_machine_test/core/utils/snackbar_utils.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/services/food_product_service.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/custom_text_field_widget.dart';
+import 'package:rgc_dynamics_machine_test/main.dart';
 
 class UploadFoodProductPage extends HookWidget {
   static const routePath = "/upload";
@@ -82,12 +85,7 @@ class UploadFoodProductPage extends HookWidget {
         await FoodProductService.createFoodProduct(requestBody);
 
         // Show success SnackBar
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Product added successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
+        SnackBarUtils.showMessage('Product added successfully!');
 
         // Clear the form after submission
         nameController.clear();
@@ -100,14 +98,9 @@ class UploadFoodProductPage extends HookWidget {
         ratingController.clear();
         pickedImage.value = null;
         imageUrl.value = null;
+        App.navigatorKey.currentContext!.pop();
       } catch (e) {
-        // Show error SnackBar if submission fails
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Failed to add product: $e'),
-            backgroundColor: Colors.red,
-          ),
-        );
+        SnackBarUtils.showMessage('Failed to add product: $e');
       }
     }
 

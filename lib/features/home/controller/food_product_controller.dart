@@ -15,7 +15,6 @@ class FoodProductController extends _$FoodProductController {
   Future<List<FoodProductModel>> fetchProducts() async {
     try {
       final foodProductList = await FoodProductService.getFoodProducts();
-      // Clear error message if the request succeeds
 
       return foodProductList;
     } catch (e) {

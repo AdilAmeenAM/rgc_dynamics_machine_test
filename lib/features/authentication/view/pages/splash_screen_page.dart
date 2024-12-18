@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rgc_dynamics_machine_test/features/authentication/view/pages/login_page.dart';
+import 'package:rgc_dynamics_machine_test/main.dart';
 
 class SplashScreenPage extends HookWidget {
   static const routePath = "/splashscreen";
@@ -12,9 +13,8 @@ class SplashScreenPage extends HookWidget {
     void startSplashScreenTimer() {
       Future.delayed(const Duration(seconds: 3), () {
         // After 3 seconds, navigate to the login page
-        context.go(
-          LoginPage.routePath,
-        );
+
+        App.navigatorKey.currentContext!.go(LoginPage.routePath);
       });
     }
 

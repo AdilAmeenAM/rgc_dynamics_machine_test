@@ -48,7 +48,10 @@ class FoodCardWidget extends StatelessWidget {
                 width: double.infinity,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  return Container();
+                  return SizedBox(
+                    height: cardHeight * 0.7,
+                    child: const Text("Image is not found"),
+                  );
                 },
               ),
             ),

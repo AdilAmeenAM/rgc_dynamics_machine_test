@@ -35,9 +35,7 @@ class LoginPage extends HookConsumerWidget {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () {
-            // Handle back button
-          },
+          onPressed: () {},
         ),
       ),
       body: Padding(

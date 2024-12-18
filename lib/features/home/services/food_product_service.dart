@@ -56,13 +56,10 @@ class FoodProductService {
         final responseCode = response.data['response_code'];
 
         if (responseCode == 201) {
-          // Show success message
           SnackBarUtils.showMessage('Product created successfully!');
         } else if (responseCode == 400) {
-          // Show error message
           SnackBarUtils.showMessage('Product already exists!');
         } else {
-          // Handle unexpected response codes
           SnackBarUtils.showMessage('Unexpected error occurred.');
         }
       } else {
@@ -82,10 +79,8 @@ class FoodProductService {
         final responseCode = response.data['response_code'];
 
         if (responseCode == 204) {
-          // Show success message
           SnackBarUtils.showMessage('Food item deleted successfully');
         } else {
-          // Handle unexpected response codes
           SnackBarUtils.showMessage('Unexpected error occurred.');
         }
       } else {

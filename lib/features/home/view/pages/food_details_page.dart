@@ -5,6 +5,7 @@ import 'package:rgc_dynamics_machine_test/core/utils/snackbar_utils.dart';
 import 'package:rgc_dynamics_machine_test/features/home/models/food_product_model.dart';
 import 'package:rgc_dynamics_machine_test/features/home/services/food_product_service.dart';
 import 'package:rgc_dynamics_machine_test/features/home/view/widgets/product_tile_widget.dart';
+import 'package:rgc_dynamics_machine_test/main.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   static const routePath = "/detailspage";
@@ -29,7 +30,7 @@ class FoodDetailsPage extends StatelessWidget {
       // Show a success message
       SnackBarUtils.showMessage('Product deleted successfully!');
       // Navigate back to the previous screen
-      context.pop();
+      App.navigatorKey.currentContext!.pop();
     } catch (e) {
       // Show an error message
       SnackBarUtils.showMessage('Failed to delete product: $e');

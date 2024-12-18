@@ -149,18 +149,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            // Profile Circle - Positioned between red and white containers
             Positioned(
-              top: (width * 0.75) - 70, // Adjust to overlap half the avatar
-              left: width / 2 - 70, // Center horizontally
+              top: (width * 0.75) - 70,
+              left: width / 2 - 70,
               child: CircleAvatar(
                 radius: 75,
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(user.profilePic),
                   radius: 70,
-
-                  // Optional
                 ),
               ),
             ),

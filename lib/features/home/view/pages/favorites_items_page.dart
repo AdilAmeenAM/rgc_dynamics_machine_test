@@ -87,9 +87,7 @@ class FavoritesItemPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        onTap: () {
-                          // Handle tap on the list item
-                        },
+                        onTap: () {},
                       );
                     },
                   ),
